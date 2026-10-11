@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Drop & Download</title>
+  <meta name="description" content="Upload dan download file terbaru dengan mudah.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">Drop<span>&</span>Download</div>
+    <p class="tagline">Satu tempat untuk berbagi file.</p>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h1>Drop your file.</h1>
+      <p>Upload file terbaru, lalu bagikan kepada siapa saja.</p>
+    </section>
+
+    <section class="upload-card">
+      <div id="dropZone" class="drop-zone">
+        <div class="upload-icon">↑</div>
+        <h2>Taruh file di sini</h2>
+        <p>atau pilih file dari perangkatmu</p>
+
+        <label for="fileInput" class="choose-file">
+          Pilih File
+        </label>
+
+        <input
+          type="file"
+          id="fileInput"
+          hidden
+        >
+
+        <p class="file-limit">Ukuran maksimal: 50 MB</p>
+      </div>
+
+      <div id="selectedFile" class="selected-file" hidden>
+        <div class="file-info">
+          <span class="file-icon">📄</span>
+          <div>
+            <p id="fileName">Nama file</p>
+            <small id="fileSize">0 KB</small>
+          </div>
+        </div>
+
+        <button id="removeFileBtn" class="remove-btn" type="button">
+          Hapus
+        </button>
+      </div>
+
+      <button id="uploadBtn" class="upload-btn" type="button" disabled>
+        Upload File
+      </button>
+
+      <p id="statusMessage" class="status-message" role="status"></p>
+    </section>
+
+    <section class="current-file-card">
+      <h2>File Terbaru</h2>
+      <p class="section-description">
+        File yang sedang tersedia untuk diunduh.
+      </p>
+
+      <div id="currentFile">
+        <p id="currentFileMessage">Memuat file terbaru...</p>
+
+        <div id="currentFileInfo" hidden>
+          <div class="file-info">
+            <span class="file-icon">📁</span>
+            <div>
+              <p id="currentFileName">Nama file</p>
+              <small id="currentFileDate"></small>
+            </div>
+          </div>
+
+          <a
+            id="downloadBtn"
+            class="download-btn"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download File
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="ownerPanel" class="owner-panel" hidden>
+      <h2>Panel Pemilik</h2>
+      <p>Login untuk mengelola file yang tersedia.</p>
+
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Email akun pemilik"
+          autocomplete="username"
+          required
+        >
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit" id="loginBtn">
+          Login
+        </button>
+      </form>
+
+      <button id="logoutBtn" type="button" hidden>
+        Logout
+      </button>
+
+      <p id="ownerMessage" role="status"></p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Drop & Download © 2026</p>
+  </footer>
+</body>
+</html>
